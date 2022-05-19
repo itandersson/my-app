@@ -1,5 +1,13 @@
+import { useState } from "react";
 
 const PackageViewer = () => {
+
+  let myPromise = fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840")
+      .then( response => response.json() )
+      .then( setData => console.log(setData) )
+
+      let[data, setData] = useState("");
+
 
   const parcels = [
     {
@@ -24,7 +32,10 @@ const PackageViewer = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1 className="h2">Parcels</h1>
+      <h1>Parcels</h1>
+
+      <h1>My favorite color is {data}!</h1>
+
 
       <h2>{parcels[0].sender}</h2>
       <ul>
