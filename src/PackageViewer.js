@@ -1,12 +1,22 @@
-import { useState } from "react";
 
-const PackageViewer = () => {
+const Test = async() => {
+
+  let testData;
 
   let myPromise = fetch("https://my.api.mockaroo.com/orders.json?key=e49e6840")
       .then( response => response.json() )
-      .then( setData => console.log(setData) )
+      .then( data => testData = data )
 
-      let[data, setData] = useState("");
+  await myPromise;
+
+  return JSON.parse(testData);
+}
+
+const PackageViewer = () => {
+
+      let test = Test();
+
+      console.log(test)
 
 
   const parcels = [
@@ -34,7 +44,9 @@ const PackageViewer = () => {
     <div style={{ padding: "20px" }}>
       <h1>Parcels</h1>
 
-      <h1>My favorite color is {data}!</h1>
+      <h1>My favorite value is {}!</h1>
+
+      <h1>My favorite test is {}!</h1>
 
 
       <h2>{parcels[0].sender}</h2>
